@@ -19,6 +19,5 @@ export const load: PageServerLoad = async () => {
 
 	const response = await docClient.send(command);
 	const tableItems = response.Items?.sort((a, b) => b.timestamp - a.timestamp).slice(0, 2).map(a => a.property_data.openimmo) as Openimmo[];
-	console.log("test server");
 	return { tableItems};
 };

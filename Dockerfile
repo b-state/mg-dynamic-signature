@@ -1,4 +1,4 @@
-# Multi-stage build for SvelteKit (adapter-node) with Puppeteer support
+# Multi-stage build for SvelteKit (adapter-node)
 # 1) Build stage
 FROM node:20-bookworm-slim AS build
 
@@ -14,27 +14,37 @@ COPY . .
 # Build the SvelteKit app
 RUN npm run build
 
-# 2) Runtime stage using Puppeteer image (Chromium + deps preinstalled)
-FROM ghcr.io/puppeteer/puppeteer:24.23.0
+# 2) Runtime stage
+FROM node:20-bookworm-slim
 
-# prevent Puppeteer from trying to download browsers in runtime image
+# Install Chromium (needed for Puppeteer)
+RUN apt-get update && apt-get install -y \
+    chromium \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create non-root user
+RUN groupadd -r appuser && useradd -r -g appuser appuser
+
+# Set environment variables
 ENV NODE_ENV=production \
     PORT=3001 \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium \
     PUPPETEER_SKIP_DOWNLOAD=true
 
-# Create non-root user
-USER pptruser
+USER appuser
 WORKDIR /app
 
 # Copy only needed files
-COPY --chown=pptruser:pptruser package.json package-lock.json* ./
+COPY --chown=appuser:appuser package.json package-lock.json* ./
 RUN npm ci --omit=dev
 
-COPY --from=build --chown=pptruser:pptruser /app/build ./build
-COPY --from=build --chown=pptruser:pptruser /app/static ./static
-# If you have any runtime assets (e.g., log dir), ensure it exists
-RUN mkdir -p /app/log
+COPY --from=build --chown=appuser:appuser /app/build ./build
+COPY --from=build --chown=appuser:appuser /app/static ./static
+
+# Create log directory
+USER root
+RUN mkdir -p /app/log && chown -R appuser:appuser /app/log
+USER appuser
 
 EXPOSE 3001
 

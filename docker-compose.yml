@@ -10,3 +10,5 @@ services:
       - PORT=${PORT:-3001}
     volumes:
       - ./log:/app/log
+    ports:
+      - ${PORT:-3001}:${PORT:-3001}

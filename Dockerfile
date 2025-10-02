@@ -15,7 +15,7 @@ COPY . .
 RUN npm run build
 
 # 2) Runtime stage using Puppeteer image (Chromium + deps preinstalled)
-FROM ghcr.io/puppeteer/puppeteer:24.7.0
+FROM ghcr.io/puppeteer/puppeteer:24.23.0
 
 # prevent Puppeteer from trying to download browsers in runtime image
 ENV NODE_ENV=production \

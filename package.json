@@ -6,6 +6,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
+		"start": "node build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -47,6 +48,7 @@
 		"@aws-sdk/lib-dynamodb": "^3.896.0",
 		"@fontsource-variable/open-sans": "^5.0.4",
 		"@fortawesome/free-solid-svg-icons": "^6.4.0",
+      "@fortawesome/free-regular-svg-icons": "^6.4.0",
 		"dotenv": "^17.2.2",
 		"puppeteer": "^24.22.3",
 		"svelte-fa": "^3.0.4"

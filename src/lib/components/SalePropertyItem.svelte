@@ -1,5 +1,4 @@
 <script lang="ts">
-	import '@fontsource-variable/open-sans';
 	import {
 		faDoorOpen,
 		faEuro,
@@ -7,9 +6,9 @@
 		faRulerCombined
 	} from '@fortawesome/free-solid-svg-icons';
 
-	import { getSmallImagePath } from '$lib/helpers';
 	import type { Anhang } from '$lib/types';
 	import Fa from 'svelte-fa';
+    import {getSmallImagePath} from "$lib/clientHelpers";
 
 	export let title: string;
 	export let city: string;
@@ -27,7 +26,7 @@
 	let currentImageIndex = 0;
 </script>
 
-<div class="mb-5 flex flex-row gap-5 rounded bg-gray-100 p-5">
+<div class=" flex flex-row gap-5 rounded bg-gray-100 p-5">
 	<!-- Hero image and gallery -->
 	<div class="relative">
 		<!-- Hero image -->

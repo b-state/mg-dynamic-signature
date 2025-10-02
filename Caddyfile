@@ -1,0 +1,18 @@
+# Replace example.com with your domain and provide a valid email for ACME
+{
+  email you@example.com
+}
+
+example.com {
+  encode gzip
+  @health {
+    path "/health"
+  }
+  respond @health 200
+
+  reverse_proxy app:3000
+  log {
+    output stdout
+    format single_field common_log
+  }
+}

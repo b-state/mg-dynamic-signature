@@ -15,7 +15,7 @@ COPY . .
 RUN npm run build
 
 # 2) Runtime stage
-FROM node:20-bookworm-slim
+FROM ghcr.io/puppeteer/puppeteer:latest
 
 # Set environment variables
 ENV NODE_ENV=production \
@@ -27,15 +27,9 @@ WORKDIR /app
 COPY package.json package-lock.json* ./
 RUN npm ci --omit=dev
 
-# Create non-root user and set ownership
-RUN groupadd -r appuser && useradd -r -g appuser appuser \
-    && mkdir -p /app/log \
-    && chown -R appuser:appuser /app
 
-COPY --from=build --chown=appuser:appuser /app/build ./build
-COPY --from=build --chown=appuser:appuser /app/static ./static
-
-USER appuser
+COPY --from=build /app/build ./build
+COPY --from=build /app/static ./static
 
 EXPOSE 3001
 

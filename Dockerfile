@@ -17,16 +17,9 @@ RUN npm run build
 # 2) Runtime stage
 FROM node:20-bookworm-slim
 
-# Install Chromium (needed for Puppeteer)
-RUN apt-get update && apt-get install -y \
-    chromium \
-    && rm -rf /var/lib/apt/lists/*
-
 # Set environment variables
 ENV NODE_ENV=production \
-    PORT=3001 \
-    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium \
-    PUPPETEER_SKIP_DOWNLOAD=true
+    PORT=3001
 
 WORKDIR /app
 

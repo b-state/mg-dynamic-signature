@@ -3,6 +3,7 @@ services:
     build: .
     image: mg-dynamic-signature:latest
     restart: unless-stopped
+    platform: linux/amd64
     env_file:
       - .env
     environment:

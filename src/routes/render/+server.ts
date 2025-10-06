@@ -1,11 +1,8 @@
 import { json, type RequestHandler } from '@sveltejs/kit';
 import puppeteer from 'puppeteer';
 
-export const GET: RequestHandler = async ({ url }) => {
-	const browser = await puppeteer.launch({        args: [
-			'--no-sandbox',
-			'--disable-setuid-sandbox'
-		]});
+export const GET: RequestHandler = async () => {
+	const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
 	const page = await browser.newPage();
 
 	// Load the page
@@ -17,8 +14,9 @@ export const GET: RequestHandler = async ({ url }) => {
 		type: 'jpeg',
 		quality: 80, // 0–100
 		fullPage: true
+
 	});
 
 	await browser.close();
-	return json({"message":"ok"});
+	return json({ message: 'ok' });
 };

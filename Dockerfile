@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Install dependencies first (better layer caching)
 COPY package.json package-lock.json* ./
-RUN npm ci --omit=dev=false
+RUN npm ci --omit=dev
 
 # Copy rest of the project
 COPY . .
@@ -20,6 +20,7 @@ FROM ghcr.io/puppeteer/puppeteer:latest
 # Set environment variables
 ENV NODE_ENV=production \
     PORT=3001
+    PUPPETEER_SKIP_DOWNLOAD=true
 
 WORKDIR /app
 

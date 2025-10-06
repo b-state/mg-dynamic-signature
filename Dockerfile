@@ -21,6 +21,7 @@ FROM ghcr.io/puppeteer/puppeteer:latest
 ENV NODE_ENV=production \
     PORT=3001
 
+USER root
 WORKDIR /app
 
 # Copy only needed files and install dependencies as root first

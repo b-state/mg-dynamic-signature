@@ -19,7 +19,7 @@ FROM ghcr.io/puppeteer/puppeteer:latest
 
 # Set environment variables
 ENV NODE_ENV=production \
-    PORT=3001
+    PORT=3001 \
     PUPPETEER_SKIP_DOWNLOAD=true
 
 WORKDIR /app

@@ -2,7 +2,10 @@ import { json, type RequestHandler } from '@sveltejs/kit';
 import puppeteer from 'puppeteer';
 
 export const GET: RequestHandler = async ({ url }) => {
-	const browser = await puppeteer.launch({});
+	const browser = await puppeteer.launch({        args: [
+			'--no-sandbox',
+			'--disable-setuid-sandbox'
+		]});
 	const page = await browser.newPage();
 
 	// Load the page

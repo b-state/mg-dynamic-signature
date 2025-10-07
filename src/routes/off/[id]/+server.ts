@@ -1,7 +1,7 @@
 import { logAccessData } from '$lib/serverHelpers';
 
-export async function GET({ params }) {
-	logAccessData(params.id, 'offerPageRedirect');
+export async function GET({ request, params }) {
+	logAccessData(request, params, 'offerPageRedirect');
 
 	return new Response(null, {
 		status: 302,

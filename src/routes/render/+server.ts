@@ -5,6 +5,7 @@ import { PORT } from '$env/static/private';
 export const GET: RequestHandler = async () => {
 	const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
 	const page = await browser.newPage();
+	await page.setCacheEnabled(false)
 
 	// Load the page
 	await page.goto(`http://localhost:${PORT}`, { waitUntil: 'networkidle0' });

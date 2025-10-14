@@ -2,7 +2,7 @@
 	import type { PageProps } from '../../.svelte-kit/types/src/routes/$types';
 	import SalePropertyItem from '$lib/components/SalePropertyItem.svelte';
 	import mgLogo from '$lib/assets/Logo mit Schriftzug queer.png';
-	import ivdLogo from '$lib/assets/ivdLogo.png';
+    import bfviLogo from '$lib/assets/bvfiLogo.webp';
 	import vdivLogo from '$lib/assets/vdivLogo.png';
 	import scoutLogo from '$lib/assets/scoutLogo.png';
 	import CheckMarkWithText from '$lib/components/CheckMarkWithText.svelte';
@@ -24,10 +24,10 @@
 			<CheckMarkWithText text={'Vermietung'}></CheckMarkWithText>
 			<CheckMarkWithText text={'Verwaltung'}></CheckMarkWithText>
 		</div>
-		<div class="flex h-40 items-center gap-4">
-			<img src={scoutLogo} alt="Logo" class="h-40 object-contain" />
-			<img src={ivdLogo} alt="Logo" class="h-30  object-contain" />
-			<img src={vdivLogo} alt="Logo" class="h-40 object-contain" />
+		<div class="flex h-40 items-center gap-5">
+			<img src={scoutLogo} alt="Logo" class="h-38 object-contain" />
+			<img src={bfviLogo} alt="Logo" class="h-28 object-contain" />
+			<img src={vdivLogo} alt="Logo" class="h-30 object-contain" />
 		</div>
 	</div>
     <div class="flex flex-col gap-5">

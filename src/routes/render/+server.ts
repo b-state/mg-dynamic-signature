@@ -12,8 +12,7 @@ export const GET: RequestHandler = async () => {
 
 	// Take screenshot
 	await page.screenshot({
-		path: './static/image/aktuelles-angebot.jpeg',
-		type: 'jpeg',
+path: `./static/image/aktuelles-angebot-${new Date().toLocaleDateString('de-DE').replace(/\./g, '-')}.jpeg`,		type: 'jpeg',
 		quality: 80, // 0–100
 		fullPage: true
 

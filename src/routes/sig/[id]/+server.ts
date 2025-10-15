@@ -1,8 +1,5 @@
 import { redirect } from '@sveltejs/kit';
 import { logAccessData } from '$lib/serverHelpers';
-
-import { redirect } from '@sveltejs/kit';
-import { logAccessData } from '$lib/serverHelpers';
 import fs from 'fs/promises';
 import path from 'path';
 
